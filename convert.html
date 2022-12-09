@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Converter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <script src="index.js"></script> -->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- <input id="inp1" type="number" name="textfeild1"> -->
+
+    <input id="inp" type="number" name="input">
+    from 
+<select name="inp1type" id="inp1type">
+    <option value="10">dec</option>
+    <option value="2">bin</option>
+    <option value="8">oct</option>
+    <option value="16">hex</option>
+  </select>
+    to
+    
+<select name="inp2type" id="inp2type">
+    <option value="10">dec</option>
+    <option value="2">bin</option>
+    <option value="8">oct</option>
+    <option value="16">hex</option>
+  </select>
+
+    <br>
+    <button id="run" onclick="run()"> run </button>
+
+    <div id="a"> </div>
+
+    <script>
+      
+// a = prompt("dec")
+
+function fromdec(a,toBase) {
+  base = toBase;
+  output = "dec:"+a+"\n";
+  res = '';
+  while (a>0) {
+    rem = a%base;
+    a = a-rem;
+    res = rem+res;
+    output += base+"|"+(a+rem)+" "+rem + "\n";
+    output+="  ---------------\n";
+    a=a/base
+  }
+
+  output += "bin:"+res;
+  return output
+}
+
+function run(){
+
+  let output = ''
+  let num = document.getElementById("inp").value
+  let type1 = document.getElementById("inp1type").value
+  let type2 = document.getElementById("inp2type").value
+
+  if (type1 == type2) {
+    output = 'both types are same'
+  }else if (type1 == 10) {
+    output = fromdec(num,type2)
+  }
+
+  console.log(type1)
+  console.log(type1)
+  console.log(output)
+
+  document.getElementById("a").innerText = output
+
+}
+    </script>
+  </body>
+</html>
