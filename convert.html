@@ -54,6 +54,23 @@ function fromdec(a,toBase) {
   return output
 }
 
+function todec(input,fromBase) {
+  let dec = 0;
+  let l = input.length;
+  output =''
+  output0 =''
+  base =  fromBase
+  for (let i = l - 1; i >= 0; i--) {
+    let powered = Math.pow( base, l - 1 - i );
+    val = powered*input[i] ;
+    dec += val
+    output += base+"^("+i+")*" +input[i] + (i!=0? " + ":'');
+    output0 += val + (i!=0? " + ":'');
+  }
+  output += "\n="+output0
+  output += "\n="+dec
+  return output;
+}
 function run(){
 
   let output = ''
@@ -65,6 +82,9 @@ function run(){
     output = 'both types are same'
   }else if (type1 == 10) {
     output = fromdec(num,type2)
+  }else if (type2 == 10) {
+    output = todec(num,type1)
+    console.log("helo:"+output)
   }
 
   console.log(type1)
